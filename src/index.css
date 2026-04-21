@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Caveat:wght@400;700&family=Quicksand:wght@300;400;500;600&family=Playfair+Display:ital,wght@1,400;1,600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Cinematic anime night palette */
+    --background: 232 45% 8%;
+    --foreground: 220 40% 95%;
+
+    --card: 232 40% 14%;
+    --card-foreground: 220 40% 95%;
+
+    --popover: 232 40% 14%;
+    --popover-foreground: 220 40% 95%;
+
+    /* Electric anime blue primary */
+    --primary: 215 95% 62%;
+    --primary-foreground: 232 50% 10%;
+    --primary-glow: 200 100% 70%;
+
+    /* Cosmic violet secondary */
+    --secondary: 265 70% 55%;
+    --secondary-foreground: 220 40% 98%;
+
+    --muted: 232 35% 18%;
+    --muted-foreground: 220 25% 70%;
+
+    /* Anime gold accent */
+    --accent: 42 95% 62%;
+    --accent-foreground: 232 50% 10%;
+
+    --destructive: 0 80% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 232 35% 22%;
+    --input: 232 35% 18%;
+    --ring: 215 95% 62%;
+
+    --radius: 1.25rem;
+
+    /* Custom anime tokens */
+    --cream: 40 30% 92%;
+    --night: 232 50% 10%;
+    --indigo: 245 60% 30%;
+    --violet: 265 70% 55%;
+    --gold: 42 95% 62%;
+    --cyan: 190 95% 65%;
+    --crimson: 350 85% 60%;
+
+    --gradient-dreamy: linear-gradient(135deg, hsl(232 55% 10%), hsl(245 60% 18%), hsl(265 50% 22%));
+    --gradient-sunset: linear-gradient(135deg, hsl(265 70% 35%), hsl(215 80% 45%), hsl(190 90% 55%));
+    --gradient-gold: linear-gradient(135deg, hsl(42 95% 65%), hsl(35 100% 75%));
+    --gradient-romantic: linear-gradient(135deg, hsl(215 95% 55%), hsl(265 75% 55%));
+    --gradient-aurora: linear-gradient(135deg, hsl(190 95% 65%), hsl(215 95% 62%), hsl(265 70% 60%), hsl(42 95% 62%));
+
+    --shadow-soft: 0 10px 40px -10px hsl(215 95% 50% / 0.4);
+    --shadow-glow: 0 0 60px hsl(200 100% 70% / 0.6);
+    --shadow-dreamy: 0 20px 60px -15px hsl(265 70% 50% / 0.5);
+    --shadow-letter: 0 25px 50px -12px hsl(232 60% 5% / 0.6);
+
+    --transition-dreamy: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-soft: all 0.4s ease-out;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Quicksand', sans-serif;
+    overflow-x: hidden;
+    cursor: none;
+  }
+  h1, h2, h3 {
+    font-family: 'Dancing Script', cursive;
+  }
+}
+
+@layer utilities {
+  .font-script { font-family: 'Dancing Script', cursive; }
+  .font-hand { font-family: 'Caveat', cursive; }
+  .font-serif-it { font-family: 'Playfair Display', serif; font-style: italic; }
+
+  .bg-dreamy { background: var(--gradient-dreamy); }
+  .bg-sunset { background: var(--gradient-sunset); }
+  .bg-gold-grad { background: var(--gradient-gold); }
+  .bg-romantic { background: var(--gradient-romantic); }
+  .bg-aurora { background: var(--gradient-aurora); background-size: 300% 300%; }
+
+  /* Aurora gradient text — works reliably across browsers */
+  .text-aurora {
+    background: var(--gradient-aurora);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    display: inline-block;
+  }
+
+  .shadow-soft { box-shadow: var(--shadow-soft); }
+  .shadow-glow { box-shadow: var(--shadow-glow); }
+  .shadow-dreamy { box-shadow: var(--shadow-dreamy); }
+  .shadow-letter { box-shadow: var(--shadow-letter); }
+
+  .text-glow {
+    text-shadow: 0 0 20px hsl(var(--primary-glow) / 0.8), 0 0 40px hsl(var(--primary) / 0.4);
+  }
+
+  .glass {
+    background: hsla(232, 40%, 14%, 0.55);
+    backdrop-filter: blur(16px);
+    border: 1px solid hsla(215, 95%, 70%, 0.25);
+  }
+  .glass-light {
+    background: hsla(220, 40%, 95%, 0.08);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsla(190, 95%, 70%, 0.3);
+  }
+}
+
+@layer components {
+  /* Floating animation */
+  @keyframes float-soft {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(2deg); }
+  }
+  @keyframes float-up {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
+  }
+  @keyframes blink {
+    0%, 92%, 100% { transform: scaleY(1); }
+    95% { transform: scaleY(0.05); }
+  }
+  @keyframes sparkle {
+    0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1) rotate(180deg); }
+  }
+  @keyframes glow-pulse {
+    0%, 100% { box-shadow: 0 0 30px hsl(var(--primary-glow) / 0.5), 0 0 60px hsl(var(--primary-glow) / 0.3); }
+    50% { box-shadow: 0 0 50px hsl(var(--primary-glow) / 0.9), 0 0 100px hsl(var(--primary) / 0.5); }
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade-in-slow {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes heart-burst {
+    0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+    100% { transform: translate(var(--tx, -50%), var(--ty, -150%)) scale(1.5); opacity: 0; }
+  }
+  @keyframes typewriter {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+  @keyframes aurora-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  @keyframes spin-slow {
+    to { transform: rotate(360deg); }
+  }
+  @keyframes wheel-spin {
+    to { transform: rotate(var(--final-rotation, 1080deg)); }
+  }
+
+  .animate-aurora { animation: aurora-shift 8s ease infinite; }
+  .animate-spin-slow { animation: spin-slow 12s linear infinite; }
+  .animate-float-soft { animation: float-soft 4s ease-in-out infinite; }
+  .animate-float-up { animation: float-up 4s ease-out forwards; }
+  .animate-blink { animation: blink 5s infinite; }
+  .animate-sparkle { animation: sparkle 2s ease-in-out infinite; }
+  .animate-glow-pulse { animation: glow-pulse 3s ease-in-out infinite; }
+  .animate-fade-up { animation: fade-up 1s ease-out forwards; opacity: 0; }
+  .animate-fade-in-slow { animation: fade-in-slow 2s ease-out forwards; }
+  .animate-heart-burst { animation: heart-burst 1.5s ease-out forwards; }
+
+  .delay-100 { animation-delay: 0.1s; }
+  .delay-200 { animation-delay: 0.2s; }
+  .delay-300 { animation-delay: 0.3s; }
+  .delay-500 { animation-delay: 0.5s; }
+  .delay-700 { animation-delay: 0.7s; }
+  .delay-1000 { animation-delay: 1s; }
+}
